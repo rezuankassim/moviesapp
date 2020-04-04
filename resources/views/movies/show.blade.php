@@ -5,7 +5,7 @@
 @section('content')
     <div class="movie-info border-b border-gray-800">
         <div class="container mx-auto px-8 md:px-4 py-16 md:flex">
-            <img src="{{ config('services.tmdb.image_url').$movie['poster_path'] }}" alt="poster" class="md:w-96 md:h-156">
+            <img src="{{ config('services.tmdb.image_url').$movie['poster_path'] }}" alt="poster" class="md:w-96 md:h-144">
             <div class="mt-4 md:mt-0 md:ml-24">
                 <h2 class="text-4xl font-semibold">{{ $movie['title'] }}</h2>
                 <div class="flex flex-wrap items-center text-gray-400 text-sm mt-1">

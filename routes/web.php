@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return redirect()->route('movies.index');
 });
@@ -30,6 +19,7 @@ Route::group([
     'prefix' => 'actors',
 ], function () {
     Route::get('/', 'ActorController@index')->name('actors.index');
+    Route::get('/{id}', 'ActorController@show')->name('actors.show');
 });
 
 Route::group([
