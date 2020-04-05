@@ -37,10 +37,7 @@
                 </div>
                 @if (count($movie['videos']['results']) > 0)
                     <div class="mt-12">
-                        <a href="https://www.youtube.com/watch?v={{ $movie['videos']['results'][0]['key'] }}" class="flex inline-flex items-center bg-orange-500 text-gray-900 rounded font-semibold px-5 py-4 hover:bg-orange-600 transition ease-in-out duration-150">
-                            <svg class="w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"/></svg>
-                            <span class="ml-2">Play Trailer</span>
-                        </a>
+                        <x-play-button :title="$movie['title']" :link="$movie['videos']['results'][0]['key']"/>
                     </div>
                 @endif
             </div>
