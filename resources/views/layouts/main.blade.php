@@ -7,6 +7,7 @@
     <title>@yield('pageTitle', config('app.name'))</title>
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <livewire:styles>
 </head>
 <body class="font-sans bg-gray-900 text-white">
     <x-navbar/>
@@ -14,5 +15,6 @@
     @yield('content')
 
     @extends('layouts.script')
+    <livewire:scripts>
 </body>
 </html>

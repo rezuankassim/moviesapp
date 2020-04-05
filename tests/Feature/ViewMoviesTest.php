@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class ViewMoviesTest extends TestCase
@@ -44,6 +45,46 @@ class ViewMoviesTest extends TestCase
         $response->assertSee('Casting Director');
         $response->assertSee('Jeanne McCarthy');
         $response->assertSee('I Spit on Your Grave III: Vengeance is Mine');
+    }
+
+    /** @test */
+    public function the_search_dropdown_works_correctly()
+    {
+        Http::fake([
+            'https:://api.themoviedb.org/3/search/multi?query=john' => $this->fakeSearchResult() 
+        ]);
+
+        Livewire::test('search-dropdown')
+            ->assertDontSee('John Wick')
+            ->set('search', 'john')
+            ->assertSee('John Wick');
+    }
+
+    public function fakeSearchResult()
+    {
+        return Http::response([
+            'results' => [
+                [
+                    "popularity" => 540.987,
+                    "vote_count" => 12081,
+                    "video" => false,
+                    "poster_path" => "\/5vHssUeVe25bMrof1HyaPyWgaP.jpg",
+                    "id" => 245891,
+                    "adult" => false,
+                    "backdrop_path" => "\/lvjRFFyNLdaMWIMYQvoebeO1JlF.jpg",
+                    "original_language" => "en",
+                    "original_title" => "John Wick",
+                    "genre_ids" => [
+                        28,
+                        53
+                    ],
+                    "title" => "John Wick",
+                    "vote_average" => 7.2,
+                    "overview" => "Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.",
+                    "release_date" => "2014-10-22"
+                ]
+            ],
+        ]);
     }
 
     public function fakeSingleMovie()
