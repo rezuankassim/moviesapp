@@ -4,7 +4,6 @@ MoviesApp is a project following tutorial by Andre Madarang with some tweaks of 
 
 ## Packages Used
 - <a href="https://laravel.com">Laravel 7</a>
-- <a href="https://jquery.com">JQuery</a>
 - <a href="https://tailwindcss.com">Tailwind CSS</a>
 - <a href="https://laravel-livewire.com/docs/installation">Livewire</a>
 - <a href="https://github.com/aniftyco/tailwindcss-spinner">Tailwind CSS Spinner</a>

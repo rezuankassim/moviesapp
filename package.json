@@ -22,7 +22,6 @@
     },
     "dependencies": {
         "alpinejs": "^2.2.5",
-        "jquery": "^3.4.1",
         "tailwindcss": "^1.2.0"
     }
 }

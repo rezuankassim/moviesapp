@@ -14,7 +14,7 @@
 
     @yield('content')
 
-    @extends('layouts.script')
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <livewire:scripts>
 </body>
 </html>
