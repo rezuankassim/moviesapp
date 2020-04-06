@@ -15,7 +15,7 @@
         "editor.defaultFormatter": "junstyle.php-cs-fixer"
     },
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorTheme": "Palenight Theme",
     "beautify.language": {
         "js": {
             "type": [
