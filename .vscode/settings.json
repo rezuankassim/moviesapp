@@ -6,7 +6,7 @@
     "editor.wordWrap": "on",
     "editor.minimap.enabled": false,
     "explorer.openEditors.visible": 0,
-    "workbench.activityBar.visible": true,
+    "workbench.activityBar.visible": false,
     "php-cs-fixer.config": ".vscode/.php_cs",
     "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
     "php-cs-fixer.onsave": false,
