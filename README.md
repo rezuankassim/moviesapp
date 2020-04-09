@@ -8,6 +8,7 @@ MoviesApp is a project following tutorial by Andre Madarang with some tweaks of 
 - <a href="https://laravel-livewire.com/docs/installation">Livewire</a>
 - <a href="https://github.com/aniftyco/tailwindcss-spinner">Tailwind CSS Spinner</a>
 - <a href="https://github.com/alpinejs/alpine#event">AlpineJS</a>
+- <a href="https://github.com/spatie/laravel-view-models">Spatie - Laravel View Models </a>
 
 ## Services Used
 - <a href="https://www.themoviedb.org">The Movie DB</a>
