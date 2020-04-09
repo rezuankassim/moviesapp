@@ -34,6 +34,7 @@ return [
         'token' => env('TMDB_TOKEN'),
         'url' => env('TMDB_URL'),
         'image_url' => env('TMDB_IMAGE_URL'),
+        'image_url_original' => env('TMDB_IMAGE_URL_ORIGINAL')
     ]
 
 ];

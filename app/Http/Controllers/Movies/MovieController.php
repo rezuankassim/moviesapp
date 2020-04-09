@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Movies;
 
 use App\Http\Controllers\Controller;
+use App\ViewModels\Movies\MovieViewModel;
+use App\ViewModels\Movies\MoviesViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -14,7 +16,7 @@ class MovieController extends Controller
         ->get(config('services.tmdb.url').'/movie/popular')
         ->json();
 
-        $genresArray = Http::withToken(config('services.tmdb.token'))
+        $genres = Http::withToken(config('services.tmdb.token'))
         ->get(config('services.tmdb.url').'/genre/movie/list')
         ->json()['genres'];
 
@@ -22,18 +24,7 @@ class MovieController extends Controller
         ->get(config('services.tmdb.url').'/movie/now_playing')
         ->json();
 
-        $genres = collect($genresArray)->mapWithKeys(function ($genre) {
-            return [$genre['id'] => $genre['name']];
-        });
-
-        $popularMovies['results'] = collect($popularMovies['results'])->take(10);
-        $nowPlayingMovies['results'] = collect($nowPlayingMovies['results'])->take(10);
-
-        return view('movies.index', [
-            'popularMovies' => $popularMovies,
-            'nowPlayingMovies' => $nowPlayingMovies,
-            'genres' => $genres
-        ]);
+        return view('movies.index', new MoviesViewModel($popularMovies, $nowPlayingMovies, $genres));
     }
 
     public function show($id)
@@ -42,22 +33,13 @@ class MovieController extends Controller
         ->get(config('services.tmdb.url').'/movie/'.$id.'?append_to_response=credits,videos,images,similar')
         ->json();
 
-        $genresArray = Http::withToken(config('services.tmdb.token'))
+        $genres = Http::withToken(config('services.tmdb.token'))
         ->get(config('services.tmdb.url').'/genre/movie/list')
         ->json()['genres'];
 
-        $genres = collect($genresArray)->mapWithKeys(function ($genre) {
-            return [$genre['id'] => $genre['name']];
-        });
-
-        $movie['credits']['cast'] = collect($movie['credits']['cast'])->take(10);
-        $movie['credits']['crew'] = collect($movie['credits']['crew'])->take(3);
         $movie['images']['backdrops'] = collect($movie['images']['backdrops'])->take(9);
         $movie['similar']['results'] = collect($movie['similar']['results'])->take(10);
 
-        return view('movies.show', [
-            'movie' => $movie,
-            'genres' => $genres
-        ]);
+        return view('movies.show', new MovieViewModel($movie, $genres));
     }
 }

@@ -38,7 +38,7 @@ class ViewMoviesTest extends TestCase
             'https://api.themoviedb.org/3/genre/movie/list' => $this->fakeGenres(),
         ]);
 
-        $response = $this->get(route('movies.show', 12345));
+       $response = $this->get(route('movies.show', 12345));
 
         $response->assertSuccessful();
         $response->assertSee('Fake Jumanji: The Next Level');
@@ -154,6 +154,9 @@ class ViewMoviesTest extends TestCase
                 ]
             ],
             "similar" => [
+                "page" => 1,
+                "total_pages" => 66,
+                "total_results" => 1308,
                 "results" => [
                     [
                         "adult" => false,

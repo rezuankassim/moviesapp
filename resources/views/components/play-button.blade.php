@@ -9,7 +9,7 @@
         
         <div class="container mx-auto lg:px-32 z-50 rounded-lg overflow-y-auto px-8">
             <div class="bg-gray-900 rounded" x-on:click.away="isOpen = false">
-                <div class="flex justify-between item-centers px-4 py-4">
+                <div class="flex justify-between item-centers px-4 py-2">
                     <span class="text-xl text-semibold">{{ $title }}</span>
                     <button
                         x-on:click="isOpen = false"
@@ -17,7 +17,7 @@
                         class="text-3xl leading-none hover:text-gray-300">&times;
                     </button>
                 </div>
-                <div class="modal-body px-4 py-8">
+                <div class="modal-body px-4 py-4">
                     <div class="responsive-container overflow-hidden relative" style="padding-top: 56.25%">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $link }}" frameborder="0" class="responsive-iframe absolute top-0 left-0 w-full h-full border-0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
