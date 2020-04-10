@@ -5,31 +5,25 @@
 @section('content')
     <div class="actor-info border-b border-gray-800">
         <div class="container mx-auto px-4 py-16 md:flex">
-            <img src="{{ config('services.tmdb.image_url').$actor['profile_path'] }}" alt="profile" class="md:w-96 md:h-144">
+            <img src="{{ $actor['profile_path'] }}" alt="profile" class="md:w-96 md:h-144">
             <div class="mt-4 md:mt-0 md:ml-24">
                 <h2 class="text-4xl font-semibold">{{ $actor['name'] }}</h2>
-                <div class="flex flex-wrap items-center text-gray-400 text-sm">
-                    @foreach ($actor['also_known_as'] as $name)
-                        {{ $name }}{{ $loop->last ? '' : ',' }}
-                    @endforeach
-                </div>
+
+                <div class="flex flex-wrap items-center text-gray-400 text-sm">{{ $actor['also_known_as'] }}</div>
+
                 <div class="flex flex-wrap items-center mt-4">
                     <svg class="fill-current text-orange-500 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg>
                     <span class="ml-1">{{ $actor['popularity'] }}</span>
                     <span class="mx-2"> | </span>
-                    <span>{{ $actor['gender'] == 2 ? 'Male' : 'Female' }}</span>
-                    @if ($actor['birthday'])
-                        <span class="mx-2"> | </span>
-                        <span>{{ Carbon\Carbon::parse($actor['birthday'])->format('M d, Y') }}</span>
-                        @if ($actor['deathday'])
-                            <span>{{ ' - '.Carbon\Carbon::parse($actor['deathday'])->format('M d, Y')}}</span>
-                        @endif
-                        <span class="ml-2">{{ '('.Carbon\Carbon::parse($actor['birthday'])->age.')' }}</span>
-                    @endif
+                    <span>{{ $actor['gender'] }}</span>
+                    <span class="mx-2"> | </span>
+                    <span>{{ $actor['birthday_and_age'] }}</span>
                 </div>
+
                 <div class="mt-4">
                     {{ $actor['biography'] }}
                 </div>
+
                 <div class="flex flex-wrap items-center mt-4">
                     @if ($actor['external_ids']['facebook_id'])
                         <a href="https://www.facebook.com/{{ $actor['external_ids']['facebook_id'] }}" class="mr-2" target="_blank">
@@ -46,6 +40,17 @@
                             <svg class="fill-current text-orange-500 w-6 hover:text-orange-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 01-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"/></svg>
                         </a>
                     @endif
+                </div>
+
+                <h4 class="font-semibold mt-12">Known For</h4>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                    @foreach ($credits as $movie)
+                        <div class="mt-4">
+                            <a href="{{ route('movies.show', $movie['id']) }}"><img src="{{ $movie['poster_path'] }}" alt="poster" class="hover:opacity-75 transition ease-in-out duration-150"></a>
+                            <a href="{{ route('movies.show', $movie['id']) }}" class="text-sm leading-normal block text-gray-400 hover:text-white mt-1">{{ $movie['title'] }}</a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

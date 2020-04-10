@@ -35,6 +35,10 @@ return [
         'url' => env('TMDB_URL'),
         'image_url' => env('TMDB_IMAGE_URL'),
         'image_url_original' => env('TMDB_IMAGE_URL_ORIGINAL')
+    ],
+
+    'ui-avatars' => [
+        'url' => env('UI_URL')
     ]
 
 ];

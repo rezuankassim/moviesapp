@@ -8,7 +8,7 @@
     <div wire:loading class="spinner top-0 right-0 mr-4 mt-4"></div>
 
     @if (strlen($search) >= 2)
-        <div class="z-10 absolute bg-gray-800 text-sm rounded mt-2 w-64" x-show="isOpen" @keydown.escape.window="isOpen = false">
+        <div class="z-10 absolute bg-gray-800 text-sm rounded mt-2 w-64 shadow-lg" x-show="isOpen" @keydown.escape.window="isOpen = false" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
             @if ($searchResults->count() > 0)
                 <ul>
                     @foreach ($searchResults as $result)
