@@ -11,10 +11,10 @@
         </button>
     </div>
 
-    <div id="navbar" class="w-full ml-4 block hidden flex-grow xl:flex xl:items-center xl:w-auto xl:ml-0">
+    <div id="navbar" class="w-full ml-4 block hidden xl:flex xl:items-center xl:w-auto xl:ml-0 {{ auth()->guest() ? 'flex-row-reverse' : 'flex-grow' }}">
         @guest
             <div class="text-sm lg:flex-grow justify-end items-center mt-4 xl:mt-0">
-                <a href="#" class="block mt-4 xl:inline-block xl:mt-0 xl:ml-12 hover:text-gray-300">Login</a>
+                <a href="{{ route('login') }}" class="block mt-4 xl:inline-block xl:mt-0 xl:ml-12 hover:text-gray-300">Login</a>
                 <a href="#" class="block mt-4 xl:inline-block xl:mt-0 xl:ml-12 hover:text-gray-300">Register</a>
             </div>
         @else
