@@ -11,8 +11,10 @@ use Tests\TestCase;
 class ViewMoviesTest extends TestCase
 {
     /** @test */
-    public function the_main_page_show_correct_info()
+    public function test_movies_index_show_correct_info()
     {
+        $this->loginWithFakeUser();
+
         Http::fake([
             'https://api.themoviedb.org/3/movie/popular' => $this->fakePopularMovies(),
             'https://api.themoviedb.org/3/movie/now_playing' => $this->fakeNowPlayingMovies(),
@@ -31,8 +33,10 @@ class ViewMoviesTest extends TestCase
     }
 
     /** @test */
-    public function the_movie_page_show_correct_info()
+    public function test_movie_show_show_correct_info()
     {
+        $this->loginWithFakeUser();
+
         Http::fake([
             'https://api.themoviedb.org/3/movie/*' => $this->fakeSingleMovie(),
             'https://api.themoviedb.org/3/genre/movie/list' => $this->fakeGenres(),
@@ -48,7 +52,7 @@ class ViewMoviesTest extends TestCase
     }
 
     /** @test */
-    public function the_search_dropdown_works_correctly()
+    public function test_search_dropdown_show_correct_info()
     {
         Http::fake([
             'https:://api.themoviedb.org/3/search/multi?query=john' => $this->fakeSearchResult() 

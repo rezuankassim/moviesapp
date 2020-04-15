@@ -20,7 +20,7 @@
         @else
             <div class="text-sm lg:flex-grow">
                 <a href="{{ route('movies.index') }}" class="block mt-4 xl:inline-block xl:mt-0 xl:ml-12 hover:text-gray-300">Movies</a>
-                <a href="{{ route('tvs.index') }}" class="block mt-4 xl:inline-block xl:mt-0 xl:ml-6 hover:text-gray-300">TV Shows</a>
+                <a href="{{ route('tv_shows.index') }}" class="block mt-4 xl:inline-block xl:mt-0 xl:ml-6 hover:text-gray-300">TV Shows</a>
                 <a href="{{ route('actors.index') }}" class="block mt-4 xl:inline-block xl:mt-0 xl:ml-6 hover:text-gray-300">Actors</a>
             </div>
             

@@ -26,11 +26,12 @@ Route::group([
 });
 
 Route::group([
-    'namespace' => 'TVs',
-    'prefix' => 'tvs',
+    'namespace' => 'TVShows',
+    'prefix' => 'tv_shows',
     'middleware' => 'auth'
 ], function () {
-    Route::get('/', 'TVController@index')->name('tvs.index');
+    Route::get('/', 'TVShowController@index')->name('tv_shows.index');
+    Route::get('/{id}', 'TVShowController@show')->name('tv_shows.show');
 });
 
 Auth::routes();
