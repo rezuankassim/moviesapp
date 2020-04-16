@@ -37,9 +37,6 @@ class MovieController extends Controller
         ->get(config('services.tmdb.url').'/genre/movie/list')
         ->json()['genres'];
 
-        $movie['images']['backdrops'] = collect($movie['images']['backdrops'])->take(9);
-        $movie['similar']['results'] = collect($movie['similar']['results'])->take(10);
-
         return view('movies.show', new MovieViewModel($movie, $genres));
     }
 }

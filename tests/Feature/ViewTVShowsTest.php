@@ -36,6 +36,103 @@ class ViewTVShowsTest extends TestCase
         $response->assertSee('Drama');
     }
 
+    public function test_tv_show_show_correct_info()
+    {
+        $this->loginWithFakeUser();
+
+        Http::fake([
+            'https://api.themoviedb.org/3/tv/*' => $this->fakeSingleTVShow(),
+            'https://api.themoviedb.org/3/genres/tv/list' => $this->fakeGenres(),
+        ]);
+
+        $response = $this->get(route('tv_shows.show', '1234'));
+
+        $response->assertSuccessful();
+    }
+
+    private function fakeSingleTVShow()
+    {
+        return Http::response([
+            'created_by' => [
+                [
+                    'name' => 'Maarten Moerkerke'
+                ]
+            ],
+            'first_air_date' => '2020-01-02',
+            'genres' => [
+                [
+                    'id' =>  18,
+                    'name' => 'Drama'
+                ],
+                [
+                    'id' => 10759,
+                    'name' => 'Action & Adventure'
+                ],
+                [
+                    'id' => 9648,
+                    'name' => 'Mystery'
+                ]
+            ],
+            'id' => 93533,
+            'name' => 'Thieves of the Wood',
+            'overview' => 'Charismatic highwayman Jan de Lichte leads the oppressed and downtrodden in a revolt against the corrupt aristocracy of 18th-century Belgium.',
+            'poster_path' => '/jQNOzoiaIQWxJAx8OUighnvnhRA.jpg',
+            'vote_average' => 5.9,
+            'credits' => [
+                'cast' => [
+                    [
+                        'character' => 'Tincke',
+                        'credit_id' => '5d7ab545af43243b22975d99',
+                        'id' => 231643,
+                        'name' => 'Stef Aerts',
+                        'gender' => 0,
+                        'profile_path' => '/5O78BU3wfvL3WmcK1NQYrTKkzbR.jpg',
+                        'order' => 500
+                    ]
+                ]
+            ],
+            'images' => [
+                'backdrops' => [
+                    [
+                        'aspect_ratio' => 1.777777777777778,
+                        'file_path' => '/gVVaukIifGJD78llZKgyT5FQbAe.jpg',
+                        'height' => 1152,
+                        'iso_639_1' => null,
+                        'vote_average' => 5.384,
+                        'vote_count' => 2,
+                        'width' => 2048
+                    ]
+                ]
+            ],
+            'similar' => [
+                'results' => [
+                    [
+                        'id' => 88118,
+                        'name' => 'Blood & Treasure',
+                        'first_air_date' => '2019-05-21',
+                        'poster_path' => '/xbWqfPKBhqOZQEGq7HdDkX0Bjib.jpg',
+                        'genre_ids' => [
+                            18,
+                            10759
+                        ],
+                        'overview' => 'An antiquities expert teams up with an art thief to catch a terrorist who funds his attacks using stolen artifacts.',
+                        'vote_average' => 6.9,
+                    ]
+                ],
+                'page' => 1,
+                'total_pages' => 5,
+                'total_results' => 98
+            ],
+            'videos' => [
+                'results' => [
+                    [
+                        'key' => '6C_dBiXsaos',
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     private function fakePopularTVShows()
     {
         return Http::response([

@@ -9,8 +9,16 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <livewire:styles>
 </head>
-<body class="font-sans bg-gray-900 text-white">
+<body class="font-sans bg-gray-900 text-white relative">
     <x-navbar/>
+
+    @if ($errors->any())
+        <x-alert textColor="text-red-600" backgroundColor="bg-red-200" hoverTextColor="text-red-800"/>
+    @endif
+{{--    
+    @if ($errors->any())
+        <livewire:alert textColor="text-red-600" backgroundColor="bg-red-200" hoverTextColor="text-red-800"> --}}
+    
 
     @yield('content')
 

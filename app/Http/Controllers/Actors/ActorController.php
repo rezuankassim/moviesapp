@@ -13,7 +13,7 @@ class ActorController extends Controller
     public function index(Request $request)
     {
         if (isset($request->page) && ($request->page < 1 || $request->page > 100)) {
-            return redirect()->route('actors.index');
+            return redirect()->route('actors.index')->withErrors('Invalid page number');
         }
 
         $popularActors = Http::withToken(config('services.tmdb.token'))
