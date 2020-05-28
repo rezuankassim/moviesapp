@@ -1,7 +1,7 @@
 <div class="ml-4 relative inline-block text-left" x-data="{ isOpen: false }" @keydown.escape="isOpen = false" @click.away="isOpen = false">
     <div>
         <a href="#" @click.prevent="isOpen = !isOpen">
-            <img src="{{ asset('storage/uploads/avatars/img_0222.jpg') }}" alt="avatar" class="rounded-full h-8 w-8">
+            <img src="{{ asset('storage/uploads/avatars/img_0222.jpg') }}" alt="avatar" class="rounded-full h-8 w-8 bg-cover">
         </a>
     </div>
 
